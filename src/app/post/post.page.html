@@ -1,0 +1,30 @@
+<ion-div *ngIf="progresso<=1">
+  <ion-progress-bar color="primary" [value]="progresso"></ion-progress-bar>
+</ion-div>
+<ion-content *ngIf="progresso>=1">
+  
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="3">
+          <ion-card *ngFor="let post of listaPage">
+            <ion-card-title>{{post.title}}
+            </ion-card-title>
+            <ion-card-header>{{post.body}}</ion-card-header>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more data...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  
+</ion-content>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button routerLink="/adicionar-post">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
